@@ -1,142 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    <!-- Roboto Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet" />
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
-    <!-- Animate Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaliraj K — QA / Software Test Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12151C;
+    --paper:#F3F5F4;
+    --paper-dim:#E7EBEA;
+    --teal:#127A72;
+    --teal-deep:#0B5C56;
+    --amber:#C97B2E;
+    --slate:#5B6B73;
+    --line:#D5DBD9;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px;}
 
-        .typewriter {
-            overflow: hidden;
-            /* Ensures the content is not revealed until the animation */
-            border-right: .15em solid orange;
-            /* The typwriter cursor */
-            white-space: nowrap;
-            /* Keeps the content on a single line */
-            letter-spacing: .15em;
-            /* Adjust as needed */
-            animation-delay: 2s !important;
-            animation:
-                typing 3.5s steps(30, end) forwards,
-                blink-caret .5s step-end infinite;
-            width: min-content;
-            opacity: 0;
-        }
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,245,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;}
+  nav .brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;}
+  nav .brand span{color:var(--teal);}
+  nav ul{display:flex;gap:28px;list-style:none;}
+  nav a{text-decoration:none;font-size:14px;color:var(--slate);transition:color .15s;}
+  nav a:hover{color:var(--ink);}
+  .nav-toggle{display:none;}
 
-        /* The typing effect */
-        @keyframes typing {
-            from {
-                width: 0
-            }
+  /* ---------- Hero ---------- */
+  header.hero{padding:88px 0 56px;}
+  .eyebrow-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block;}
+  .status-line{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--slate);}
+  h1.name{font-size:clamp(40px,6vw,60px);line-height:1.05;margin-bottom:14px;}
+  .role{font-size:20px;color:var(--teal-deep);font-weight:500;margin-bottom:22px;}
+  .lede{max-width:560px;color:var(--slate);font-size:17px;margin-bottom:34px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:3px;font-size:14px;font-weight:500;
+    text-decoration:none;border:1px solid var(--ink);transition:all .15s;
+  }
+  .btn-solid{background:var(--ink);color:var(--paper);}
+  .btn-solid:hover{background:var(--teal-deep);border-color:var(--teal-deep);}
+  .btn-outline{border-color:var(--line);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);}
 
-            to {
-                width: 100%;
-                opacity: 1;
-            }
+  /* ---------- Stat strip ---------- */
+  .stat-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  .stat-strip .wrap{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    padding:0;
+  }
+  .stat{
+    padding:26px 24px;border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--teal-deep);}
+  .stat .lbl{font-size:12.5px;color:var(--slate);margin-top:4px;}
 
-            1% {
-                opacity: 1;
-            }
-        }
+  /* ---------- Sections ---------- */
+  section{padding:68px 0;}
+  section.divider{border-top:1px solid var(--line);}
+  h2.section-title{font-size:26px;margin-bottom:10px;}
+  .section-intro{color:var(--slate);max-width:560px;margin-bottom:36px;font-size:15px;}
 
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;}
+  .about-grid p{color:var(--slate);margin-bottom:14px;font-size:15.5px;}
+  .about-grid p strong{color:var(--ink);font-weight:600;}
+  .facts{border-left:2px solid var(--teal);padding-left:20px;}
+  .facts dl{display:flex;flex-direction:column;gap:14px;}
+  .facts dt{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--slate);}
+  .facts dd{font-size:14.5px;margin-top:2px;}
 
-            from,
-            to {
-                border-color: transparent
-            }
+  /* Skills */
+  .skill-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 40px;}
+  .skill-group h3{font-size:14px;color:var(--teal-deep);margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-weight:500;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-size:13px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:3px;background:var(--card);color:var(--ink);
+  }
 
-            50% {
-                border-color: orange
-            }
-        }
-    </style>
+  /* Experience timeline */
+  .timeline-item{
+    display:grid;grid-template-columns:120px 1fr;gap:20px;
+    padding:20px 0;border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{border-bottom:1px solid var(--line);}
+  .timeline-item .period{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--slate);padding-top:3px;}
+  .timeline-item h3{font-size:17px;margin-bottom:3px;}
+  .timeline-item .org{font-size:14px;color:var(--teal-deep);margin-bottom:8px;font-weight:500;}
+  .timeline-item p{font-size:14.5px;color:var(--slate);}
+
+  /* Projects */
+  .proj-sub{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);margin:30px 0 16px;font-family:'JetBrains Mono',monospace;}
+  .proj-sub:first-of-type{margin-top:0;}
+  .qa-card{
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--teal);
+    border-radius:3px;padding:22px 24px;margin-bottom:16px;
+  }
+  .qa-card .top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px;}
+  .qa-card h3{font-size:17px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;
+    padding:3px 9px;border-radius:12px;white-space:nowrap;
+  }
+  .pill-live{background:#E3F2F0;color:var(--teal-deep);}
+  .pill-progress{background:#F7EADA;color:var(--amber);}
+  .qa-card p{font-size:14.5px;color:var(--slate);margin-bottom:12px;}
+  .qa-meta{display:flex;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--slate);margin-bottom:12px;}
+  .qa-meta b{color:var(--ink);}
+  .proj-link{font-size:13.5px;color:var(--teal-deep);text-decoration:none;font-weight:500;}
+  .proj-link:hover{text-decoration:underline;}
+
+  .dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .dev-card{border:1px solid var(--line);padding:18px 20px;border-radius:3px;background:var(--card);}
+  .dev-card h3{font-size:15px;margin-bottom:6px;}
+  .dev-card p{font-size:13.5px;color:var(--slate);}
+
+  /* Contact */
+  footer{padding:70px 0 50px;border-top:1px solid var(--line);}
+  footer h2{font-size:28px;margin-bottom:14px;}
+  footer p{color:var(--slate);max-width:480px;margin-bottom:28px;font-size:15px;}
+  .contact-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .contact-links a{text-decoration:none;font-size:14.5px;border-bottom:1px solid var(--line);padding-bottom:3px;transition:border-color .15s;}
+  .contact-links a:hover{border-color:var(--ink);}
+  .foot-note{margin-top:50px;font-size:12.5px;color:var(--slate);font-family:'JetBrains Mono',monospace;}
+
+  @media (max-width:720px){
+    .about-grid,.skill-groups{grid-template-columns:1fr;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr);}
+    .stat{border-bottom:1px solid var(--line);}
+    .dev-grid{grid-template-columns:1fr;}
+    nav ul{gap:16px;}
+    nav a{font-size:12.5px;}
+    .timeline-item{grid-template-columns:1fr;gap:4px;}
+  }
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+</style>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light shadow-0">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarRightAlignExample" aria-controls="navbarRightAlignExample" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
 
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarRightAlignExample">
-                <!-- Left links -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item p-4">
-                        <a class="text-purple-400" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item p-4">
-                        <a class="text-dark" href="about.html">About Me</a>
-                    </li>
-                    <li class="nav-item p-4">
-                        <a class="text-dark" href="internship.html">InternShip</a>
-                    </li>
-                    <li class="nav-item p-4">
-                        <a class="text-dark" href="skills.html">Skills</a>
-                    </li>
-                    <li class="nav-item p-4">
-                        <a class="text-dark" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                <!-- Left links -->
-            </div>
-            <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-    </nav>
-    <div class="container h-75">
-        <!-- Content -->
-        <div class="section">
-            <div class="row">
-                <div class="col-xl-6">
-                    <!-- Left Section -->
-                    <div>
-                        <div style="padding-top: 2rem">
-                            <p class="fs-2 pt-lg-4 animate__animated animate__fadeInRight">
-                                Hi there 👋
-                            </p>
-                            <p class="fs-1 fw-bold animate__animated animate__fadeInRight">
-                                I am Kaliraj
-                            </p>
-                            <div style="width: max-content;">
-                                <div class="fs-3 fw-bold typewriter">
-                                    > <span>Web Developer</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 rounded">
-                    <!-- Right Section -->
-                    <img class="w-100 py-xl-5 text-right rounded-circle" src="./img/Removal-788.png" alt="Programmer Coding" />
-                </div>
-            </div>
-        </div>
+<nav>
+  <div class="wrap">
+    <div class="brand">kali<span>raj</span>.dev</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <span class="dot"></span>
+      <span class="status-line">open to QA / Testing · Full Stack · Technical Support roles</span>
     </div>
-</body>
+    <h1 class="name">Kaliraj K</h1>
+    <div class="role">Software Test Engineer (QA) &amp; Full Stack Developer</div>
+    <p class="lede">
+      I find what breaks before users do. B.E. Computer Science graduate moving from full-stack
+      development into software testing — currently building manual and Selenium-based automation
+      projects end to end, from test design to defect reporting.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="#projects">View projects</a>
+      <a class="btn btn-outline" href="mailto:kkaliraj6385@gmail.com">kkaliraj6385@gmail.com</a>
+      <a class="btn btn-outline" href="https://github.com/KaliCSE" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/kaliraj-k-098215242" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
 
+<div class="stat-strip">
+  <div class="wrap">
+    <div class="stat">
+      <div class="num">110</div>
+      <div class="lbl">manual test cases designed</div>
+    </div>
+    <div class="stat">
+      <div class="num">12</div>
+      <div class="lbl">real defects logged</div>
+    </div>
+    <div class="stat">
+      <div class="num">75%</div>
+      <div class="lbl">pass rate on first execution</div>
+    </div>
+    <div class="stat">
+      <div class="num">3</div>
+      <div class="lbl">internships completed</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I graduated in <strong>2025 with a B.E. in Computer Science</strong> from Sri Eshwar College
+          of Engineering, Coimbatore, and started out building full-stack and ERP applications.
+          Along the way I found I enjoyed the testing side of the work more — tracing edge cases,
+          documenting exactly how something fails, and proving it with evidence.
+        </p>
+        <p>
+          I'm now pursuing <strong>Java Full Stack Development &amp; Software Testing</strong> at
+          QSpiders Institute, Chennai, and building real end-to-end QA projects: manual test
+          documentation with logged defects, and a Selenium + TestNG automation framework using
+          the Page Object Model.
+        </p>
+      </div>
+      <div class="facts">
+        <dl>
+          <div>
+            <dt>Based in</dt>
+            <dd>Chennai, Tamil Nadu</dd>
+          </div>
+          <div>
+            <dt>Currently</dt>
+            <dd>Pursuing QSpiders — Java Full Stack &amp; Testing</dd>
+          </div>
+          <div>
+            <dt>CGPA</dt>
+            <dd>7.5 · no active backlogs</dd>
+          </div>
+          <div>
+            <dt>Looking for</dt>
+            <dd>QA/Testing, Full Stack, Technical Support roles</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="divider">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-intro">Testing-first, with full-stack development underneath it.</p>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>// testing</h3>
+        <div class="tags">
+          <span class="tag">Manual Testing</span>
+          <span class="tag">Test Case Design</span>
+          <span class="tag">Bug Reporting</span>
+          <span class="tag">RTM</span>
+          <span class="tag">Selenium WebDriver</span>
+          <span class="tag">TestNG</span>
+          <span class="tag">REST Assured</span>
+          <span class="tag">Equivalence Partitioning</span>
+          <span class="tag">Boundary Value Analysis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>// development</h3>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript (ES6+)</span>
+          <span class="tag">React.js</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Frappe Framework</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>// tools</h3>
+        <div class="tags">
+          <span class="tag">Git &amp; GitHub</span>
+          <span class="tag">Maven</span>
+          <span class="tag">IntelliJ IDEA</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Excel / Test Sheets</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>// also</h3>
+        <div class="tags">
+          <span class="tag">Python (basic scripting)</span>
+          <span class="tag">HTML5 / CSS3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="divider">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="period">Internship</div>
+        <div>
+          <h3>Frappe / ERP Developer Intern</h3>
+          <div class="org">Klyonix Tech Consulting Pvt Ltd</div>
+          <p>Built and customized ERP modules on the Frappe framework.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="period">Internship</div>
+        <div>
+          <h3>Frontend Developer Intern</h3>
+          <div class="org">FundsIndia</div>
+          <p>Worked on frontend features for a financial services product.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="period">Internship</div>
+        <div>
+          <h3>MERN Stack Intern</h3>
+          <div class="org">The Better Tomorrow</div>
+          <p>Built full-stack features using MongoDB, Express, React, and Node.js.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="divider">
+  <div class="wrap">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-intro">Real projects I designed and executed myself, not tutorial clones.</p>
+
+    <div class="proj-sub">QA &amp; testing</div>
+
+    <div class="qa-card">
+      <div class="top-row">
+        <h3>E-Commerce Manual Testing Project</h3>
+        <span class="pill pill-live">LIVE</span>
+      </div>
+      <p>End-to-end manual testing of an e-commerce web application — test plan, test case design,
+         execution, defect reporting, and summary reporting.</p>
+      <div class="qa-meta">
+        <span><b>110</b> test cases</span>
+        <span><b>12</b> defects logged</span>
+        <span><b>5</b> high severity</span>
+      </div>
+      <a class="proj-link" href="https://github.com/KaliCSE/ecommerce-manual-testing-project" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="qa-card">
+      <div class="top-row">
+        <h3>E-Commerce Automation Framework</h3>
+        <span class="pill pill-progress">IN PROGRESS</span>
+      </div>
+      <p>Hybrid Selenium + TestNG + REST Assured framework using the Page Object Model —
+         data-driven regression tests across login, cart, and checkout, plus REST API coverage.</p>
+      <div class="qa-meta">
+        <span><b>Java</b></span>
+        <span><b>Selenium</b></span>
+        <span><b>TestNG</b></span>
+        <span><b>REST Assured</b></span>
+      </div>
+    </div>
+
+    <div class="proj-sub">Development</div>
+    <div class="dev-grid">
+      <div class="dev-card">
+        <h3>Netflix Clone</h3>
+        <p>Built with React.js &amp; Node.js.</p>
+      </div>
+      <div class="dev-card">
+        <h3>Food Order App</h3>
+        <p>MERN stack application for managing food orders.</p>
+      </div>
+      <div class="dev-card">
+        <h3>Micro-SaaS Link Analytics</h3>
+        <p>URL shortener with analytics and authentication, React.js + Node.js.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>Open to QA/Testing, Full Stack, and Technical Support roles. Reach out directly or
+       find me on GitHub and LinkedIn.</p>
+    <div class="contact-links">
+      <a href="mailto:kkaliraj6385@gmail.com">kkaliraj6385@gmail.com</a>
+      <a href="https://github.com/KaliCSE" target="_blank" rel="noopener">github.com/KaliCSE</a>
+      <a href="https://linkedin.com/in/kaliraj-k-098215242" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="foot-note">Chennai, Tamil Nadu — last updated 2026</div>
+  </div>
+</footer>
+
+</body>
 </html>
